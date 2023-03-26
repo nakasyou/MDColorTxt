@@ -1,9 +1,20 @@
 import { Hono } from "https://deno.land/x/hono@v3.1.2/mod.ts";
 import { serve } from "https://deno.land/std@0.181.0/http/server.ts";
-import { serveStatic } from "https://deno.land/x/hono@v3.1.2/middleware.ts";
+import { serveStatic, cors } from "https://deno.land/x/hono@v3.1.2/middleware.ts";
 import svg from "./svg.ts";
 
 const app=new Hono();
+app.use(
+  '/i/*',
+  cors({
+    origin: '*',
+    allowHeaders: [],
+    allowMethods: ['GET'],
+    exposeHeaders: ['*'],
+    maxAge: 600,
+    credentials: true,
+  })
+)
 app.get('/i/:str',ctx=>{
   const str=ctx.req.param("str");
   const color=ctx.req.query("c") || "currentColor";

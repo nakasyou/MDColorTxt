@@ -1,5 +1,5 @@
 import getTextSize from "./get-text-size.ts";
-import TextToSVG from 'npm:text-to-svg';
+import TextToSVG from 'https://esm.sh/text-to-svg';
 
 const textToSVG = TextToSVG.loadSync();
 
